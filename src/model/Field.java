@@ -5,11 +5,11 @@ public class Field {
     private Rank rank;
     private Line line;
 
-    public Field(Rank rank, Line line) {
-        this(false, rank, line);
+    public Field(Line line, Rank rank) {
+        this(line, rank, false);
     }
 
-    public Field(boolean isWhite, Rank rank, Line line) {
+    public Field(Line line, Rank rank, boolean isWhite) {
         super();
         this.isWhite = isWhite;
         this.rank = rank;
@@ -59,8 +59,7 @@ public class Field {
 
     @Override
     public String toString() {
-        return "Field{" +
-                ", line=" + line +
+        return "Field{line=" + line +
                 ", rank=" + rank +
                 ", isWhite=" + isWhite +
                 '}';

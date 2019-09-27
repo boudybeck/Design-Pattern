@@ -33,16 +33,48 @@ public class ChessBoard {
 
     public void setupChessBoard(){
         this.setupFields();
+        this.setupPieces();
     }
 
     private void setupFields(){
         fields = new ArrayList<>();
-        boolean isWhite = false;
         for (int i = Rank.getMinRank(); i <= Rank.getMaxRank(); i++) {
             for ( char line : Line.getLines() ) {
-                fields.add(new Field(new Rank(i), new Line(line)));
+                fields.add(new Field(new Line(line), new Rank(i)));
             }
         }
+    }
+
+    private void setupPieces(){
+      pieces = new ArrayList<>();
+      Rank rank = new Rank(1);
+      boolean isWhite = true;
+      pieces.add(new Piece(PieceName.KING  , new Field(new Line('E'), rank), isWhite));
+      pieces.add(new Piece(PieceName.QUEEN , new Field(new Line('D'), rank), isWhite));
+      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('A'), rank), isWhite));
+      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('H'), rank), isWhite));
+      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('C'), rank), isWhite));
+      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('F'), rank), isWhite));
+      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('B'), rank), isWhite));
+      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('G'), rank), isWhite));
+        for ( char line : Line.getLines()) {
+          rank = new Rank(2);
+          isWhite = true;
+          pieces.add(new Piece(PieceName.PAWN  , new Field(new Line(line), rank), isWhite));
+          rank = new Rank(7);
+          isWhite = false;
+          pieces.add(new Piece(PieceName.PAWN  , new Field(new Line(line), rank), isWhite));
+        }
+      rank = new Rank(8);
+      isWhite = false;
+      pieces.add(new Piece(PieceName.KING  , new Field(new Line('E'), rank), isWhite));
+      pieces.add(new Piece(PieceName.QUEEN , new Field(new Line('D'), rank), isWhite));
+      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('A'), rank), isWhite));
+      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('H'), rank), isWhite));
+      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('C'), rank), isWhite));
+      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('F'), rank), isWhite));
+      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('B'), rank), isWhite));
+      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('G'), rank), isWhite));
     }
 
     @Override

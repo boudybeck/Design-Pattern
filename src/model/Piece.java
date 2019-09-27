@@ -3,12 +3,12 @@ package model;
 public class Piece {
     private PieceName pieceName;
     private Field field;
-    private boolean isBlack;//otherwise white
+    private boolean isWhite;
 
-    public Piece(PieceName pieceName, Field field, boolean isBlack) {
+    public Piece(PieceName pieceName, Field field, boolean isWhite) {
         this.pieceName = pieceName;
         this.field = field;
-        this.isBlack = isBlack;
+        this.isWhite = isWhite;
     }
 
     public PieceName getPieceName() {
@@ -27,12 +27,12 @@ public class Piece {
         this.field = field;
     }
 
-    public boolean getIsBlack() {
-        return isBlack;
+    public boolean getIsWhite() {
+        return isWhite;
     }
 
-    public void setField(boolean isBlack) {
-        this.isBlack = isBlack;
+    public void setField(boolean isWhite) {
+        this.isWhite = isWhite;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Piece {
         return "Piece{" +
                 "pieceName=" + pieceName +
                 ", field=" + field +
-                ", isBlack=" + isBlack +
+                ", isWhite=" + isWhite +
                 '}';
     }
 }
