@@ -2,7 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+/*
+Correct zou zijn een schaakbord opgebouwd uit lijnstukken en velden en evt schaakstukken erop.
 
+*/
 public class ChessBoard {
     private List<Field> fields;
     private List<Piece> pieces;
