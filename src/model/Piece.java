@@ -1,22 +1,21 @@
 package model;
 
-public class Piece {
-    private PieceName pieceName;
+public class Piece extends ChessBoardElement {
+    private PieceDefinition pieceDefinition;
     private Field field;
-    private boolean isWhite;
 
-    public Piece(PieceName pieceName, Field field, boolean isWhite) {
-        this.pieceName = pieceName;
-        this.field = field;
-        this.isWhite = isWhite;
+    public Piece(PieceDefinition pieceDefinition, Field field, boolean isWhite) {
+       super(isWhite);
+       this.pieceDefinition = pieceDefinition;
+       this.field = field;
     }
 
-    public PieceName getPieceName() {
-        return pieceName;
+    public PieceDefinition getPieceDefinition() {
+        return pieceDefinition;
     }
 
-    public void setPieceName(PieceName pieceName) {
-        this.pieceName = pieceName;
+    public void setPieceDefinition(PieceDefinition pieceDefinition) {
+        this.pieceDefinition = pieceDefinition;
     }
 
     public Field getField() {
@@ -27,20 +26,14 @@ public class Piece {
         this.field = field;
     }
 
-    public boolean getIsWhite() {
-        return isWhite;
-    }
-
-    public void setField(boolean isWhite) {
-        this.isWhite = isWhite;
-    }
+//System.out.println("Drawing a white Knight on field B1");
+    @Override
+    public void draw(ChessBoardElement piece){
+        System.out.println("Drawing a " + piece);
+    };
 
     @Override
     public String toString() {
-        return "Piece{" +
-                "pieceName=" + pieceName +
-                ", field=" + field +
-                ", isWhite=" + isWhite +
-                '}';
+        return super.getColor(super.getIsWhite()) + " " + pieceDefinition + " on " + field;
     }
 }
