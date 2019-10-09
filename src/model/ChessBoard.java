@@ -2,11 +2,12 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
-Correct zou zijn een schaakbord opgebouwd uit lijnstukken en velden en evt schaakstukken erop.
 
-*/
 public class ChessBoard {
+    private final char MIN_RANK = 'A';
+    private final char MAX_RANK = 'H';
+    private final int MIN_LINE = 1;
+    private final int MAX_LINE = 8;
     private List<Field> fields;
     private List<Piece> pieces;
 
@@ -41,43 +42,61 @@ public class ChessBoard {
 
     private void setupFields(){
         fields = new ArrayList<>();
-        for (int i = Rank.getMinRank(); i <= Rank.getMaxRank(); i++) {
-            for ( char line : Line.getLines() ) {
-                fields.add(new Field(new Line(line), new Rank(i)));
+        for (char i = MIN_RANK; i <= MAX_RANK; i++) {
+            for (int j = MIN_LINE; j <= MAX_LINE; j++) {
+                fields.add(new Field(i, j));
             }
+        }
+        printFields();
+    }
+
+    private void printFields(){
+        for (Field field : fields){
+            field.draw(field);
         }
     }
 
     private void setupPieces(){
-      pieces = new ArrayList<>();
-      Rank rank = new Rank(1);
-      boolean isWhite = true;
-      pieces.add(new Piece(PieceName.KING  , new Field(new Line('E'), rank), isWhite));
-      pieces.add(new Piece(PieceName.QUEEN , new Field(new Line('D'), rank), isWhite));
-      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('A'), rank), isWhite));
-      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('H'), rank), isWhite));
-      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('C'), rank), isWhite));
-      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('F'), rank), isWhite));
-      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('B'), rank), isWhite));
-      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('G'), rank), isWhite));
-        for ( char line : Line.getLines()) {
-          rank = new Rank(2);
-          isWhite = true;
-          pieces.add(new Piece(PieceName.PAWN  , new Field(new Line(line), rank), isWhite));
-          rank = new Rank(7);
-          isWhite = false;
-          pieces.add(new Piece(PieceName.PAWN  , new Field(new Line(line), rank), isWhite));
+        pieces = new ArrayList<>();
+        pieces.add(new Piece(PieceDefinition.ROOK, fields.get(0), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(1), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(6), false));
+        pieces.add(new Piece(PieceDefinition.ROOK, fields.get(7), false));
+        pieces.add(new Piece(PieceDefinition.KNIGHT, fields.get(8), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(9), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(14), false));
+        pieces.add(new Piece(PieceDefinition.KNIGHT, fields.get(15), false));
+        pieces.add(new Piece(PieceDefinition.BISHOP, fields.get(16), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(17), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(22), false));
+        pieces.add(new Piece(PieceDefinition.BISHOP, fields.get(23), false));
+        pieces.add(new Piece(PieceDefinition.QUEEN, fields.get(24), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(25), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(30), false));
+        pieces.add(new Piece(PieceDefinition.QUEEN, fields.get(31), false));
+        pieces.add(new Piece(PieceDefinition.KING, fields.get(32), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(33), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(38), false));
+        pieces.add(new Piece(PieceDefinition.KING, fields.get(39), false));
+        pieces.add(new Piece(PieceDefinition.BISHOP, fields.get(40), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(41), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(46), false));
+        pieces.add(new Piece(PieceDefinition.BISHOP, fields.get(47), false));
+        pieces.add(new Piece(PieceDefinition.KNIGHT, fields.get(48), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(49), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(54), false));
+        pieces.add(new Piece(PieceDefinition.KNIGHT, fields.get(55), false));
+        pieces.add(new Piece(PieceDefinition.ROOK, fields.get(56), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(57), true));
+        pieces.add(new Piece(PieceDefinition.PAWN, fields.get(62), false));
+        pieces.add(new Piece(PieceDefinition.ROOK, fields.get(63), false));
+        printPieces();
+    }
+
+    private void printPieces(){
+        for (Piece piece : pieces) {
+            piece.draw(piece);
         }
-      rank = new Rank(8);
-      isWhite = false;
-      pieces.add(new Piece(PieceName.KING  , new Field(new Line('E'), rank), isWhite));
-      pieces.add(new Piece(PieceName.QUEEN , new Field(new Line('D'), rank), isWhite));
-      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('A'), rank), isWhite));
-      pieces.add(new Piece(PieceName.ROOK  , new Field(new Line('H'), rank), isWhite));
-      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('C'), rank), isWhite));
-      pieces.add(new Piece(PieceName.BISHOP, new Field(new Line('F'), rank), isWhite));
-      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('B'), rank), isWhite));
-      pieces.add(new Piece(PieceName.KNIGHT, new Field(new Line('G'), rank), isWhite));
     }
 
     @Override
