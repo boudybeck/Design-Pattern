@@ -1,6 +1,6 @@
 package model;
 
-public enum PieceDefinition {
+public enum PieceName {
     KING("King","K",100,1),
     QUEEN("Queen","Q",9,1),
     ROOK("Rook","R",5,2),
@@ -13,7 +13,7 @@ public enum PieceDefinition {
     private int value
     , number;
 
-    PieceDefinition(String fullName, String abbrName, int value, int number) {
+    PieceName(String fullName, String abbrName, int value, int number) {
         this.fullName = fullName;
         this.abbrName = abbrName;
         this.value = value;
@@ -34,10 +34,5 @@ public enum PieceDefinition {
 
     public int getNumber() {
         return number;
-    }
-
-    @Override
-    public String toString() {
-        return fullName;
     }
 }
